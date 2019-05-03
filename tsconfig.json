@@ -3,7 +3,6 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "strict": true,
     "noImplicitAny": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -12,7 +11,7 @@
     "pretty": true,
     "noEmitOnError": false,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "strictPropertyInitialization": false,

@@ -2,15 +2,16 @@ import * as DataLoader from "DataLoader";
 import { Controller } from "egg";
 
 export default class UserConnector extends Controller {
-  fetch = ids => {
-    const users = this.ctx.app.model.User.findAll({
+  fetch = async ids => {
+    const users = await this.ctx.app.model.User.findAll({
       where: {
         id: {
           $in: ids
         }
       }
-    }).then(us => us.map(u => u.toJSON()));
-    return users;
+    })
+    users.length=ids.length
+    return users
   };
 
   loader: DataLoader<{}, {}> = new DataLoader(this.fetch);
@@ -36,20 +37,17 @@ export default class UserConnector extends Controller {
   async create(params) {
     // 校验参数
     this.ctx.validate(this.rule, params);
+    params.name = params.email
     const user = await this.ctx.model.User.create(params);
-    this.ctx.body = {
-      code: 0,
-      message: "success",
-      data: {
-        user
-      }
-    };
+    delete user.password
+    this.ctx.body = user
+    return user
   }
 
   async login(params) {
     const { ctx } = this;
     // 校验参数
-    this.ctx.validate(this.rule);
+    this.ctx.validate(this.rule, params);
     const user = await ctx.model.User.findOne({
       where: params
     });

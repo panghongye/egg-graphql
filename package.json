@@ -1,5 +1,23 @@
 {
-  "author": "",
+  "name": "egg-ts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "description": "",
+  "egg": {
+    "declarations": true,
+    "typescript": true
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "eslintIgnore": [
+    "coverage"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "dependencies": {
     "@switchdog/egg-graphql": "^3.1.0-beta.1",
     "dataloader": "^1.4.0",
@@ -11,7 +29,6 @@
     "lodash": "^4.17.11",
     "mysql2": "^1.6.5"
   },
-  "description": "",
   "devDependencies": {
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
@@ -29,23 +46,6 @@
     "validate-commit-msg": "2.14.0",
     "webstorm-disable-index": "^1.2.0"
   },
-  "egg": {
-    "declarations": true,
-    "typescript": true
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
-  "eslintIgnore": [
-    "coverage"
-  ],
-  "license": "MIT",
-  "name": "egg-ts",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "scripts": {
     "autod": "autod_",
     "ci": "npm run lint && npm run cov && npm run tsc",
@@ -59,6 +59,5 @@
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "tsc": "ets && tsc -p tsconfig.json"
-  },
-  "version": "1.0.0"
+  }
 }
