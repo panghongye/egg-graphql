@@ -1,15 +1,36 @@
-# egg-graphql-boilerplate
+# hackernews-async-ts
 
-本项目是使用egg-graphql插件构建的graphql服务器
+[Hacker News](https://news.ycombinator.com/) showcase using typescript && egg
 
-## installation
+https://github.com/freebyron/egg-graphql-boilerplate
 
-```shell
-git clone 
-npm install 
-npm run dev
+## QuickStart
+
+### Development
+
+```bash
+$ npm i
+$ npm run dev
+$ open http://localhost:7001/
+$ open http://localhost:7001/graphql
 ```
 
-在浏览器打开 http://localhost:7001/graphql
+Don't tsc compile at development mode, if you had run `tsc` then you need to `npm run clean` before `npm run dev`.
 
-## 
+### Deploy
+
+```bash
+$ npm run tsc
+$ npm start
+```
+
+### Npm Scripts
+
+- Use `npm run lint` to check code style
+- Use `npm test` to run unit test
+- se `npm run clean` to clean compiled js at development mode once
+
+### Requirement
+
+- Node.js 8.x
+- Typescript 2.8+
