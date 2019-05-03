@@ -3,6 +3,7 @@ module.exports = (app) => {
 
   const User = app.model.define('user', {
     name: STRING(30),
+    email: STRING(30),
     password: STRING(32),
   });
 

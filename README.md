@@ -1,31 +1,24 @@
 # hackernews-async-ts
 
 [Hacker News](https://news.ycombinator.com/) showcase using typescript && egg
+https://github.com/freebyron/egg-graphql-boilerplatec
 
-https://github.com/freebyron/egg-graphql-boilerplate
 
 ## QuickStart
-
-### Development
-
 ```bash
-$ npm i
+$ npm run tsc
 $ npm run dev
 $ open http://localhost:7001/
 $ open http://localhost:7001/graphql
 ```
 
+### Development
 Don't tsc compile at development mode, if you had run `tsc` then you need to `npm run clean` before `npm run dev`.
 
 ### Deploy
 
-```bash
-$ npm run tsc
-$ npm start
-```
 
 ### Npm Scripts
-
 - Use `npm run lint` to check code style
 - Use `npm test` to run unit test
 - se `npm run clean` to clean compiled js at development mode once

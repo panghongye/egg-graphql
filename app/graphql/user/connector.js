@@ -26,7 +26,36 @@ class UserConnector {
   fetchById(id) {
     return this.loader.load(id);
   }
+
+  async create() {
+    const { ctx } = this;
+    const createRule = {
+      email: { type: 'string' },
+      password: { type: 'string' },
+    };
+    // 校验参数
+    ctx.validate(createRule);
+
+    ctx.request.body.name = ctx.request.body.email
+
+    await ctx.model.User.create(ctx.request.body);
+    ctx.body = {
+      code: 0,
+      message: 'success',
+    };
+  }
+
+  login({ }) {
+    const createRule = {
+      name: { type: 'string' },
+      password: { type: 'string' },
+    };
+    // 校验参数
+    ctx.validate(createRule);
+    debugger
+  }
 }
 
-module.exports = UserConnector;
+// module.exports = UserConnector;
+module.exports = require('../../controller/user');
 

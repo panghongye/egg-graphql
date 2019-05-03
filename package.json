@@ -1,52 +1,68 @@
 {
-  "name": "graphql-todos",
-  "version": "1.1.0",
-  "description": "",
-  "private": true,
+  "author": "",
+  "ci": {
+    "version": "8"
+  },
   "dependencies": {
     "dataloader": "^1.4.0",
     "egg": "^2.22.2",
-    "egg-development-proxyworker": "^1.2.0",
     "egg-graphql": "^2.3.0",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^4.3.1",
     "egg-validate": "^2.0.2",
     "graphql": "^14.2.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "mysql2": "^1.6.5"
   },
+  "description": "",
   "devDependencies": {
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^7.0.12",
+    "@types/supertest": "^2.0.0",
     "autod": "^3.1.0",
     "autod-egg": "^1.1.0",
     "egg-bin": "^4.13.1",
     "egg-ci": "^1.11.0",
-    "egg-development-proxyworker": "1.1.1",
     "egg-mock": "^3.22.2",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "11.3.2",
-    "eslint-config-egg": "^7.3.1",
     "husky": "^0.14.3",
+    "tslib": "^1.9.0",
+    "tslint": "^5.0.0",
+    "tslint-config-egg": "^1.0.0",
+    "typescript": "^3.0.0",
     "validate-commit-msg": "2.14.0",
     "webstorm-disable-index": "^1.2.0"
   },
+  "egg": {
+    "declarations": true,
+    "typescript": true
+  },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.9.0"
   },
-  "scripts": {
-    "start": "egg-scripts start --daemon",
-    "stop": "egg-scripts stop",
-    "dev": "egg-bin dev",
-    "debug": "egg-bin debug",
-    "test": "egg-bin test",
-    "cov": "egg-bin cov",
-    "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod",
-    "commitmsg": "validate-commit-msg"
-  },
+  "eslintIgnore": [
+    "coverage"
+  ],
+  "license": "MIT",
+  "name": "egg-ts",
+  "private": true,
   "repository": {
     "type": "git",
     "url": ""
   },
-  "author": "",
-  "license": "MIT"
+  "scripts": {
+    "autod": "autod_",
+    "ci": "npm run lint && npm run cov && npm run tsc",
+    "clean": "ets clean",
+    "commitmsg": "validate-commit-msg",
+    "cov": "egg-bin cov",
+    "debug": "egg-bin debug",
+    "dev": "egg-bin dev",
+    "lint": "tslint --project . -c tslint.json",
+    "start": "egg-scripts start --daemon --title=egg-server-init",
+    "stop": "egg-scripts stop --title=egg-server-init",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "tsc": "ets && tsc -p tsconfig.json"
+  },
+  "version": "1.0.0"
 }
