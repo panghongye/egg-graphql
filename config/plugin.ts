@@ -15,6 +15,7 @@ plugin.graphql = {
 };
 
 plugin.validate = {
+  enable: true,
   package: "egg-validate"
 };
 
