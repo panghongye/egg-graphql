@@ -53,7 +53,6 @@
     "autod": "autod_",
     "ci": "npm run lint && npm run cov && npm run tsc",
     "clean": "ets clean",
-    "commitmsg": "validate-commit-msg",
     "cov": "egg-bin cov",
     "debug": "egg-bin debug",
     "dev": "egg-bin dev",
