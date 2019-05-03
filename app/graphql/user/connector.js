@@ -27,35 +27,62 @@ class UserConnector {
     return this.loader.load(id);
   }
 
-  async create() {
-    const { ctx } = this;
+  async create(ctx) {
     const createRule = {
-      email: { type: 'string' },
-      password: { type: 'string' },
+      name: {
+        type: 'string',
+      },
+      password: {
+        type: 'string',
+      },
     };
     // 校验参数
     ctx.validate(createRule);
 
-    ctx.request.body.name = ctx.request.body.email
-
-    await ctx.model.User.create(ctx.request.body);
+    const user = await ctx.model.User.create(ctx.request.body);
     ctx.body = {
       code: 0,
       message: 'success',
+      data: {
+        user: {
+          name: user.name,
+        },
+      },
     };
-  }
+  };
 
-  login({ }) {
+  async login(ctx) {
     const createRule = {
-      name: { type: 'string' },
-      password: { type: 'string' },
+      name: {
+        type: 'string',
+      },
+      password: {
+        type: 'string',
+      },
     };
     // 校验参数
     ctx.validate(createRule);
-    debugger
-  }
+
+    const user = await ctx.model.User.findOne({
+      where: ctx.request.body,
+    });
+    if (!user) {
+      ctx.body = {
+        code: '10000',
+        message: '用户不存在',
+      };
+    }
+
+    ctx.session.user = user;
+    ctx.body = {
+      code: '0',
+      message: 'success',
+      data: user,
+    };
+  };
+
+
 }
 
-// module.exports = UserConnector;
-module.exports = require('../../controller/user');
+module.exports = UserConnector;
 

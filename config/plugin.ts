@@ -11,7 +11,7 @@ plugin.sequelize = {
 
 plugin.graphql = {
   enable: true,
-  package: "egg-graphql"
+  package: "@switchdog/egg-graphql"
 };
 
 plugin.validate = {

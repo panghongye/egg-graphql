@@ -15,7 +15,7 @@ import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
 import 'egg-sequelize';
-import 'egg-graphql';
+import '@switchdog/egg-graphql';
 import 'egg-validate';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
