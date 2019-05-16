@@ -3,14 +3,14 @@ import { Controller } from "egg";
 
 export default class UserConnector extends Controller {
   fetch = async ids => {
-    const users = await this.ctx.app.model.User.findAll({
+    const users = await this.ctx.app.model.User.find({
       where: {
         id: {
           $in: ids
         }
       }
     })
-    users.length=ids.length
+    users.length = ids.length
     return users
   };
 
@@ -36,34 +36,54 @@ export default class UserConnector extends Controller {
 
   async create(params) {
     // 校验参数
-    this.ctx.validate(this.rule, params);
-    params.name = params.email
-    const user = await this.ctx.model.User.create(params);
+    try {
+      this.ctx.validate(this.rule, params);
+      params.name = params.email
+      const user = await this.ctx.model.User.create(params);
+      return user
+    } catch (error) {
+      this.ctx.body = {
+        code: 0,
+        message: error
+      }
+      console.info(error)
+      return 
+    }
+
     // this.ctx.body = user
-    return user
   }
 
   async login(params) {
     const { ctx } = this;
     // 校验参数
-    this.ctx.validate(this.rule, params);
-    const user = await ctx.model.User.findOne({
-      where: params
-    });
-    if (!user) {
+    try {
+      this.ctx.validate(this.rule, params);
+      const user = await ctx.model.User.findOne(params);
+      ctx.session.user = user;
+      if (!user) {
+        ctx.body = {
+          code: "10000",
+          message: "用户不存在"
+        };
+      }
+      // ctx.body = {
+      //   code: "0",
+      //   message: "success",
+      //   data: user
+      // };
+      return user
+
+    } catch (error) {
       ctx.body = {
-        code: "10000",
-        message: "用户不存在"
+        code: 0,
+        message: error
       };
+      console.info(error)
+      return { errors: error }
     }
 
-    ctx.session.user = user;
-    // ctx.body = {
-    //   code: "0",
-    //   message: "success",
-    //   data: user
-    // };
-    return user
+
+
   }
 }
 

@@ -1,5 +1,4 @@
 type Query {
   user(id: ID!): User
   login(email: String!, password: String!): User
-  tags: [String!]
 }

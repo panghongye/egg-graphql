@@ -6,9 +6,7 @@ export default {
     login(root, params, ctx) {
       return ctx.connector.user.login(params);
     },
-    tags(root, params, ctx) {
-      return ctx.connector.tag.fetchRecommandation();
-    }
+
   },
   Mutation: {
     createUser(root, params, ctx) {

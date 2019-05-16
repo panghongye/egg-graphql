@@ -2,13 +2,13 @@ import { EggAppConfig, EggAppInfo, PowerPartial } from "egg";
 
 export default (appInfo: EggAppInfo) => {
   const config: PowerPartial<EggAppConfig> = {
-    sequelize: {
-      dialect: "mysql",
-      database: "graphql",
-      host: "localhost",
-      port: "3306",
-      username: "root",
-      password: "rootroot"
+    mongoose: {
+      client: {
+        url: 'mongodb://127.0.0.1/graphql',
+        options: {},
+        // mongoose global plugins, expected a function or an array of function and options
+        // plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
+      },
     },
     proxyworker: {
       port: 10086
@@ -23,7 +23,7 @@ export default (appInfo: EggAppInfo) => {
 
   // use for cookie sign key, should change to your own and keep security
   // config.keys = appInfo.name + "_1556880039998_8698";
-  config.keys = "egg-ts";
+  config.keys = "egg-graphql";
 
   // add your special config in here
   const bizConfig = {
