@@ -79,11 +79,8 @@ export default class UserConnector extends Controller {
         message: error
       };
       console.info(error)
-      return { errors: error }
+      return null
     }
-
-
-
   }
 }
 
