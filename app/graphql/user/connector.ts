@@ -39,8 +39,7 @@ export default class UserConnector extends Controller {
     this.ctx.validate(this.rule, params);
     params.name = params.email
     const user = await this.ctx.model.User.create(params);
-    delete user.password
-    this.ctx.body = user
+    // this.ctx.body = user
     return user
   }
 
@@ -59,11 +58,12 @@ export default class UserConnector extends Controller {
     }
 
     ctx.session.user = user;
-    ctx.body = {
-      code: "0",
-      message: "success",
-      data: user
-    };
+    // ctx.body = {
+    //   code: "0",
+    //   message: "success",
+    //   data: user
+    // };
+    return user
   }
 }
 
