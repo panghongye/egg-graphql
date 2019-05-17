@@ -1,7 +1,5 @@
 # hackernews-async-ts
-
 [Hacker News](https://news.ycombinator.com/) showcase using typescript && egg
-https://github.com/freebyron/egg-graphql-boilerplatec
 
 
 ## QuickStart
@@ -24,6 +22,10 @@ Don't tsc compile at development mode, if you had run `tsc` then you need to `np
 - se `npm run clean` to clean compiled js at development mode once
 
 ### Requirement
-
 - Node.js 8.x
 - Typescript 2.8+
+
+### Doc
+[egg-graphql](https://github.com/freebyron/egg-graphql-boilerplate)
+
+[mongoose](http://mongoosejs.net/docs/guide.html)

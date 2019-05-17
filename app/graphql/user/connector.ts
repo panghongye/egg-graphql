@@ -35,53 +35,41 @@ export default class UserConnector extends Controller {
   };
 
   async create(params) {
-    // 校验参数
     try {
-      this.ctx.validate(this.rule, params);
+      this.ctx.validate(this.rule, params);  // 校验参数
       params.name = params.email
       const user = await this.ctx.model.User.create(params);
       return user
     } catch (error) {
-      this.ctx.body = {
-        code: 0,
-        message: error
-      }
-      console.info(error)
-      return 
+      return
     }
-
-    // this.ctx.body = user
   }
 
   async login(params) {
     const { ctx } = this;
-    // 校验参数
     try {
-      this.ctx.validate(this.rule, params);
+      ctx.validate(this.rule, params); // 校验参数  
+    } catch (error) {
+      ctx.errorMsg = {
+        msg: '请输入正确的邮箱格式，且密码不少于6位！'
+      }
+      return
+    }
+
+    try {
       const user = await ctx.model.User.findOne(params);
       ctx.session.user = user;
-      if (!user) {
-        ctx.body = {
-          code: "10000",
-          message: "用户不存在"
-        };
+      if (!user) ctx.errorMsg = {
+        msg: '您还未注册！'
       }
-      // ctx.body = {
-      //   code: "0",
-      //   message: "success",
-      //   data: user
-      // };
       return user
-
     } catch (error) {
-      ctx.body = {
-        code: 0,
-        message: error
-      };
-      console.info(error)
-      return null
+      ctx.errorMsg = {
+        msg: '网络错误请重试！'
+      }
+      ctx.logger.error(new Error(error));
+      return
     }
   }
 }
 
-// module.exports = UserConnector;
