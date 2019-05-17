@@ -22,6 +22,20 @@ export default (appInfo: EggAppInfo) => {
       onPreGraphQL: function* (ctx) { },
       // 开发工具 graphiQL 路由前的拦截器，建议用于做权限操作(如只提供开发者使用)
       onPreGraphiQL: function* (ctx) { },
+      apolloServerOptions: {
+        // rootValue(){}, // the value passed to the first resolve function
+        // formatError(err) {}, // a function to apply to every error before sending the response to clients
+        // validationRules, // additional GraphQL validation rules to be applied to client-specified queries
+        // formatParams, // a function applied for each query in a batch to format parameters before execution
+        formatResponse(res, { context }) {
+          return res
+        }, // a function applied to each response after execution
+        tracing: true, // when set to true, collect and expose trace data in the Apollo Tracing format
+        // logFunction, // a function called for logging events such as execution times
+        // fieldResolver, // a custom default field resolver
+        debug: true, // a boolean that will print additional debug logging if execution errors occur
+        cacheControl: true, // when set to true, enable built-in support for Apollo Cache Control
+      },
     },
     middleware: ["graphql"],
     proxyworker: {
