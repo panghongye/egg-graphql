@@ -43,8 +43,6 @@ export default class UserConnector extends Controller {
     } catch (error) {
       return
     }
-
-    // this.ctx.body = user
   }
 
   async login(params) {
@@ -52,17 +50,26 @@ export default class UserConnector extends Controller {
     try {
       ctx.validate(this.rule, params); // 校验参数  
     } catch (error) {
-       ctx.graphqlError = {
+      ctx.errorMsg = {
         msg: '请输入正确的邮箱格式，且密码不少于6位！'
       }
       return
     }
 
-    const user = await ctx.model.User.findOne(params);
-    ctx.session.user = user;
-    if (!user) {
+    try {
+      const user = await ctx.model.User.findOne(params);
+      ctx.session.user = user;
+      if (!user) ctx.errorMsg = {
+        msg: '您还未注册！'
+      }
+      return user
+    } catch (error) {
+      ctx.errorMsg = {
+        msg: '网络错误请重试！'
+      }
+      ctx.logger.error(new Error(error));
+      return
     }
-    return user
   }
 }
 

@@ -27,7 +27,8 @@ export default (appInfo: EggAppInfo) => {
         // formatError(err) {}, // a function to apply to every error before sending the response to clients
         // validationRules, // additional GraphQL validation rules to be applied to client-specified queries
         // formatParams, // a function applied for each query in a batch to format parameters before execution
-        formatResponse(res, { context }) {
+        formatResponse(res, { context: ctx }) {
+          res.errors = ctx.errorMsg
           return res
         }, // a function applied to each response after execution
         tracing: true, // when set to true, collect and expose trace data in the Apollo Tracing format
