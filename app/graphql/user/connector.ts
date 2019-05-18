@@ -57,7 +57,7 @@ export default class UserConnector extends Controller {
     }
 
     try {
-      let user = await ctx.model.User.findOne({ email: params.email });
+      const user = await ctx.model.User.findOne({ email: params.email });
       ctx.session.user = user;
       if (!user) {
         ctx.errors = {
@@ -65,8 +65,8 @@ export default class UserConnector extends Controller {
         }
         return null
       }
-      user = await ctx.model.User.findOne(params);
-      if (!user) {
+
+      if (user.password!==params.password) {
         ctx.errors = {
           message: '账号密码错误！'
         }
