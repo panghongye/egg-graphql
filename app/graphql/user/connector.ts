@@ -57,11 +57,22 @@ export default class UserConnector extends Controller {
     }
 
     try {
-      const user = await ctx.model.User.findOne(params);
+      let user = await ctx.model.User.findOne({ email: params.email });
       ctx.session.user = user;
-      if (!user) ctx.errors = {
-        message: '您还未注册！'
+      if (!user) {
+        ctx.errors = {
+          message: '您还未注册！'
+        }
+        return null
       }
+      user = await ctx.model.User.findOne(params);
+      if (!user) {
+        ctx.errors = {
+          message: '账号密码错误！'
+        }
+        return null
+      }
+
       return user
     } catch (error) {
       ctx.errors = {
