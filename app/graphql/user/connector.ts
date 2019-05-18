@@ -50,8 +50,8 @@ export default class UserConnector extends Controller {
     try {
       ctx.validate(this.rule, params); // 校验参数  
     } catch (error) {
-      ctx.errorMsg = {
-        msg: '请输入正确的邮箱格式，且密码不少于6位！'
+      ctx.errors = {
+        message: '请输入正确的邮箱格式，且密码不少于6位！'
       }
       return
     }
@@ -59,13 +59,13 @@ export default class UserConnector extends Controller {
     try {
       const user = await ctx.model.User.findOne(params);
       ctx.session.user = user;
-      if (!user) ctx.errorMsg = {
-        msg: '您还未注册！'
+      if (!user) ctx.errors = {
+        message: '您还未注册！'
       }
       return user
     } catch (error) {
-      ctx.errorMsg = {
-        msg: '网络错误请重试！'
+      ctx.errors = {
+        message: '网络错误请重试！'
       }
       ctx.logger.error(new Error(error));
       return

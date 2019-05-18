@@ -20,8 +20,8 @@
 
   返回前端的错误提示信息
    ```javascript
-    ctx.errorMsg = {
-        msg:"用户提示信息"
+    ctx.errors = {
+        message:"用户提示信息"
         field:"其他信息"
     }
    ```
