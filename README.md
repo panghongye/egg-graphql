@@ -26,6 +26,6 @@ Don't tsc compile at development mode, if you had run `tsc` then you need to `np
 - Typescript 2.8+
 
 ### Doc
-[egg-graphql](https://github.com/freebyron/egg-graphql-boilerplate)
+[egg-graphql-template](https://github.com/freebyron/egg-graphql-boilerplate)
 
 [mongoose](http://mongoosejs.net/docs/guide.html)
